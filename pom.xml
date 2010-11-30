@@ -404,7 +404,7 @@
     <repository>
       <id>nexus</id>
       <name>nexus</name>
-      <url>http://obweb.il.outbrain.com:8081/nexus/content/repositories/releases/</url>
+      <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
     </repository>
   </distributionManagement>
 </project>
