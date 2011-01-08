@@ -94,6 +94,8 @@ public class JmxMonitor {
         log.warn("Unable to load log4j's DOMConfigurator. Performance counters will not be exported. To fix, include the log4j jar in your application's classpath.");
       } catch( SecurityException e ) {
         log.error( "Could not access method DOMConfigurator.configure(URL)", e );
+      } catch( NoSuchMethodError e ) {
+        log.warn("Unable to load log4j's DOMConfigurator. Performance counters will not be exported. Most likely you have SLF4J in your classpath, which does not support this functionality.");
       } catch( NoSuchMethodException e ) {
         log.error( "Could not find method DOMConfigurator.configure(URL)", e );
       } catch( IllegalArgumentException e ) {
