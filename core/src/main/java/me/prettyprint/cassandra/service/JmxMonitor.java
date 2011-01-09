@@ -101,7 +101,11 @@ public class JmxMonitor {
       } catch( IllegalAccessException e ) {
         log.error( "Could not invoke method DOMConfigurator.configure(URL)", e );
       } catch( InvocationTargetException e ) {
-        throw new RuntimeException(e.getCause());
+        if (e.getCause() instanceof NoSuchMethodError) {
+          log.warn("Unable to load log4j's DOMConfigurator. Performance counters will not be exported. Most likely you have SLF4J in your classpath, which does not support this functionality.");
+        } else {
+          throw new RuntimeException(e.getCause());
+        }
       }
     }
   }
